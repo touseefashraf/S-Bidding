@@ -1,0 +1,109 @@
+.admin-panel {
+    .starik{
+        color: red;
+        font-size: 25px;
+        line-height: 20px;
+    }
+    .starik-content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .starik-content select, .starik-content input{
+        width: calc(100% - 15px);
+    }
+    input:not([type="checkbox"])
+    input:not([type="radio"])
+    textarea, select{
+        width: 100%;
+        border: 1px solid #E0E0DB;
+        border-radius: 3px;
+        padding: 4px 10px;
+        height: 38px;
+        font-size: 14px;
+        margin: 0px 0px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        border-color: var(--ap-blue);
+        box-shadow: 0px 0px 1px var(--ap-blue);
+    }
+
+    .label {
+        color: #555;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #9aa1ab;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+        color: #9aa1ab;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+        color: #9aa1ab;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+        color: #9aa1ab;
+    }
+
+    /* Input Groups */
+    .input-group>.custom-file, .input-group>.select, .input-group>.custom-select, .input-group>.form-control, .input-group>.form-control-plaintext {
+        margin: 3px 0px !important;
+    }
+
+    .input-group select {
+        height: 38px;
+        margin-top: 3px;
+    }
+
+    .input-group button {
+        height: 38px;
+        font-weight: bold;
+    }
+
+    .input-group-prepend {
+        margin-right: -4px !important;
+    }
+
+    .input-group-append {
+        margin-left: -4px !important;
+    }
+
+    /* Input Errors */
+    .ng-invalid.ng-touched, .ng-invalid.ng-dirty, .ng-invalid.form-submitted {
+        border-color: lightcoral !important;
+    }
+
+    .errors p{
+        font-size: 13px;
+        font-weight: bold;
+        color: #f12112;
+    }
+}
+.website {
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #b2b2b2;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+        color: #b2b2b2;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+        color: #b2b2b2;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+        color: #b2b2b2;
+    }
+        /* Input Errors */
+        .ng-invalid.ng-touched, .ng-invalid.ng-dirty, .ng-invalid.form-submitted {
+            border-color: lightcoral !important;
+        }
+    
+        .errors p{
+            margin: 0px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #f12112;
+        }
+}

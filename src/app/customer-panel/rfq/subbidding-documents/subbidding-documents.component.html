@@ -1,0 +1,102 @@
+<!-- <p>
+  subbidding-documents works!
+</p> -->
+<div class="main-container">
+    <ng-container *ngIf="dataStatus == 'fetching'">
+        <div class=" text-center">
+            <img src="/assets/img/loading.gif" style="width: 100px; margin-top:15%;">
+        </div>
+    </ng-container>
+    <div class="container" *ngIf="dataStatus == 'done'">
+        <input #inputField type="file" style="display: none;" id="other-files" (change)="onDocumentChange($event)" multiple>
+
+        <ng-container *ngIf="docData.length>0">
+            <div class="scrollClass">
+                <ng-container class="" *ngFor="let d of docData;let i = index">
+
+                    <div class="pageContainer">
+                        <div class="doc-details">
+                            <div class="docs-image">
+                                <img src="assets/images/file-img.jpg">
+                            </div>
+                            <div class="file-info">
+                                {{d.name}}
+                                <br>
+                                <span>{{d.file_size}}kb</span>
+
+
+                            </div>
+
+                        </div>
+                        <div class="actions">
+                            <!-- <div class="dload" (click)="downloadDocument(d.id, d)">
+                                <p>Download</p>
+                                <i class="fas fa-download"></i>
+
+                            </div>
+                            <div class="del" (click)="deleteFile(i)">
+                                <p>Delete</p>
+                                <i class="fas fa-trash"></i>
+                            </div> -->
+
+                            <button (click)="downloadDocument(d.id, d)" type="button" class="btn btn-outline-secondary">Download &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <i class="fas fa-download"></i></button>
+                            <ng-container *ngIf="projectUserId==loggedinUserId">
+                                <button (click)="deleteFile(i)" type="button" class="btn btn-outline-danger">Delete &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <i class="fas fa-trash"></i></button>
+                            </ng-container>
+                        </div>
+                    </div>
+
+
+                </ng-container>
+                <ng-container *ngIf="fileStatus == 'uploading'">
+                    <div>
+                        <div class=" text-center">
+                            <img src="/assets/img/loading.gif" style="width: 60px; margin-top:1%;">
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="drag-bar">
+
+                <button type="button" style="width: 220px" (click)="browseFiles($event)">Click here to select Files</button>
+            </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="docData.length==0">
+            <ng-container *ngIf="fileStatus == 'uploading'">
+                <div>
+                    <div class=" text-center">
+                        <img src="/assets/img/loading.gif" style="width: 100px; margin-top:15%;">
+                    </div>
+                </div>
+            </ng-container>
+
+            <div *ngIf="fileStatus=='uploaded'" class="file-box" (dragover)="fileDragStart($event)" (dragenter)="fileDragStart($event)" (dragleave)="fileDragEnd($event)" (drop)="fileDropped($event)">
+                <i style="font-size: 60px;" class="far fa-images"></i>
+                <p>Drag and Drop files in this box</p>
+                <p>Drop files in this box to start uploading</p>
+                <p>or</p>
+                <button class="upload-btn" type="button" (click)="browseFiles($event)">Click here to select Files</button>
+            </div>
+
+        </ng-container>
+
+
+    </div>
+</div>
+<div class="actionButtonCover borderNone">
+    <button [routerLink]="['../documents/other']" type="button" class="btn-save backbutton" [disabled]="dataStatus=='fetching'" [ngClass]="dataStatus=='fetching'?'in-progress':''"> <i class="fa fa-angle-left"></i> Previous
+        <span></span><span></span><span></span>
+    </button>
+    <!-- <button type="button" class="btn-save skipButton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''"> Skip <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button> -->
+    <button [routerLink]="['../qto-documents/qto']" type="submit" class="btn-save" [disabled]="dataStatus=='fetching'" [ngClass]="dataStatus=='fetching'?'in-progress':''">Next <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button>
+    <!-- <button type="submit" class="btn-save submitBtton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Save <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button> -->
+</div>

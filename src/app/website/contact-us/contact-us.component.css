@@ -1,0 +1,281 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: unset;
+}
+.contact-us-page{
+    background-color: #f7f7f7;
+    overflow-x: unset;
+
+}
+.contact-us-form{
+    width: 42vw;
+    padding: 20px 20px;
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* margin-left: auto; */
+    margin-right: auto;
+}
+
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.bold{
+    font-weight: bold;
+    /*margin-left: 4px;*/
+}
+.contact-us-heading{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+.green-line{
+    background-color: rgb(57 193 168);
+    width: 80px;
+    height: 5px;
+    margin-left: 27px;
+    margin-bottom: 25px;
+}
+.input-values{
+    color: #454545;
+    border: 2px solid #e1e1e1;
+    padding: 10px 13px;
+    margin: 1vw;
+    background-color: #fafafa;
+    border-radius: 3px;
+    width: 19vw;
+}
+.input-values h5{
+    overflow: hidden;
+}
+.input-message{
+    color: #454545;
+    border: 2px solid #e1e1e1;
+    padding: 10px 13px;
+    margin: 15px 0px;
+    background-color: #fafafa;
+    border-radius: 3px;
+    width: 39vw;
+}
+.google-map{
+
+    /* padding-top: 50px; */
+    padding: 20px 20px;
+}
+.success{
+    text-align: center;
+
+    padding: 50px;
+}
+.success h1 {
+    /* font-size: 20px; */
+    margin-bottom: 20px;
+}
+.google-map iframe{
+    width:42vw;
+    height:400px;
+}
+.captcha-margin {
+    margin-top: 10px;
+}
+.submit-button{
+    background-color: #084887;
+    /* width: 42vw; */
+    width: 100%;
+
+    padding: 20px 0px;
+    font-size: 17px;
+    margin-top: 30px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    color: #fff;
+}
+.our-contact-info{
+    /* width: 95%; */
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 0px;
+    /* margin: 0px 60px; */
+}
+.our-contact-info p{
+    margin: 0px;
+    margin-bottom: 4px;
+}
+.contact-info-head{
+    margin-left: 5vw;
+    margin-top: 12vh;
+}
+.address{
+    width: 28vw;
+    padding: 40px 25px;
+    border:1px solid #eeeeee;
+    background-color: white;
+    /* margin-right: 2vw; */
+}
+.contact{
+    width: 28vw;
+    padding: 40px 25px;
+    border:1px solid #eeeeee;
+    /* margin-right: 2vw; */
+    background-color: white;
+}
+.more-info{
+    width: 28vw;
+    padding: 40px 25px;
+    border:1px solid #eeeeee;
+    background-color: white;
+}
+.blue{
+    color: blue;
+}
+.cbox{
+    box-shadow: 0px 0px 20px .1px rgb(202, 202, 202);
+}
+.address-box{
+    display: flex;
+    justify-content: center;
+}
+.address-box p:nth-child(1){
+width: 50%;
+padding-right: 10px;
+border-right: 2px solid black;
+}
+.address-box p:nth-child(2){
+    width: 50%;
+    padding-left: 10px;
+}
+.cbox{
+    padding: 25px 20px;
+}
+.cbox h5{
+    margin-bottom: 10px;
+}
+
+@media(max-width: 768px){
+    .success h1 {
+        font-size: 17px;
+        font-weight: 600;
+    }
+    .contact-us-form{
+        width: 100%;
+        padding-left: 60px;
+    }
+    .form-container{
+        display: block;
+    }
+    .input-values{
+        width: 41vw;
+        height: 23vh;
+    }
+    .contact-us-page{
+        width: 100%;
+        /* overflow-x: hidden; */
+    }
+    .form-container{
+        width: 100%;
+    }
+    .contact-us-form{
+        width: 100%;
+    }
+    .input-message{
+        width: 86vw;
+    }
+    .submit-button{
+        width: 84vw;
+    }
+    .google-map iframe{
+        width: 100%;
+        padding: 10px 40px;
+    }
+    .address{
+        margin-bottom: 10px;
+        width: 87%;
+    }
+    .contact{
+        margin-bottom: 10px;
+        width: 87%;
+    }
+    .more-info{
+        width: 87%;
+        margin-bottom: 10px;
+    }
+    .our-contact-info{
+        flex-wrap: wrap;
+
+    }
+}
+@media(max-width: 425px){
+    .contact-us-heading{
+        margin-left: 2vw;
+    }
+    .contact-us-form{
+        margin: 0px;
+    width: 100%;
+    padding: 30px 40px;
+    }
+    .form-container{
+        display: block;
+    }
+    .input-values{
+        width: 100%;
+
+    }
+    .captcha-margin {
+
+    }
+    .contact-us-page{
+        overflow-x: hidden;
+        width: 100vw;
+    }
+    .form-container{
+        width: 100%;
+        margin: 0px;
+    }
+    .input-message{
+        width: 100%;
+    }
+    .submit-button{
+        /* margin: 15px !important; */
+        width: 100%;
+    }
+    .google-map iframe{
+        width:100%;
+        height:500px;
+        /* margin-left:3vw; */
+
+    }
+    .google-map{
+        margin:1vw;
+        padding: 0px;
+    }
+    .address{
+        width: 91vw;
+        /* margin-left: 1vw; */
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+    .contact{
+        width: 91vw;
+        /* margin-left: 1vw; */
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+    .more-info{
+        width: 91vw;
+        /* margin-left: 1vw; */
+        margin-right: 0px;
+    }
+    .our-contact-info{
+        /* margin-left: 10px; */
+    }
+}

@@ -1,0 +1,47 @@
+<!-- <p>
+    login works!
+</p> -->
+
+<div class="signin-container">
+    <div class="signin-box">
+        <div class="logo-container">
+            Sub Bidding
+        </div>
+        <ng-container *ngIf="msg=='yes'">
+            <div class="button-container">
+                You need to login to create project list
+            </div>
+        </ng-container>
+        <ng-container *ngIf="msg=='list'">
+            <div class="button-container">
+                You need to login to view auction list
+            </div>
+        </ng-container>
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)" #f="ngForm">
+            <div class="row input-container">
+                <div class="col-md-12 form-inputs">
+                    <input type="text" formControlName="email" class="email" placeholder="Enter Email" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.email, f)" class="errors">
+                        <p *ngIf="g.email.errors.required">Email is required</p>
+                        <p *ngIf="g.email.errors.email">Please enter valid email</p>
+                    </div>
+                </div>
+                <div class="col-md-12 form-inputs">
+                    <input type="password" formControlName="password" class="password" placeholder="Enter Password" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.password, f)" class="errors">
+                        <p *ngIf="g.password.errors.required">Password is required</p>
+                    </div>
+                </div>
+            </div>
+            <div class="login-btn-container text-center">
+                <button type="submit" [disabled]="loginLoading" class="primary login-btn" [ngClass]="loginLoading?'in-progress':''">Login
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </form>
+        <div class="footer-container">
+            <a routerLinkActive="router-link-active" (click)="goto('registration')" class="create-account">Create an account</a>
+            <a routerLinkActive="router-link-active" (click)="gotoforget('forgot-password')" class="forgotten">Forgotten your password</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+.admin-panel {
+    color: #292271;
+    font-family: "Baloo Bhaina 2", cursive;
+    .time-custom {
+    }
+    .time-custom table {
+        border: none;
+        width: 100%;
+    }
+    .time-custom table td {
+    }
+    .time-custom button {
+        outline: none !important;
+        border: 1px solid #cccccc;
+        color: black;
+        font-size: 15px;
+        text-transform: uppercase;
+        padding: 8px 30px;
+        border-radius: 25px;
+        margin: 3px;
+    }
+    .time-custom input {
+        width: 100%;
+    }
+    .main-container {
+        margin: 10px;
+    }
+    .mendatory {
+        color: red;
+    }
+    .box {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    table {
+        border: 1px solid #cccccc;
+    }
+
+    table th {
+        background: var(--ap-black);
+        color: #fff;
+    }
+
+    .title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title-wrapper .title {
+        color: var(--ap-red);
+    }
+    .table td,
+    .table th {
+        vertical-align: middle !important;
+    }
+    .table td {
+        padding: 2px 0.75rem;
+    }
+
+    .mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+        padding-bottom: 0px !important;
+    }
+
+    .mat-stepper-label-position-bottom .mat-horizontal-stepper-header .mat-step-label {
+        padding-top: 5px !important;
+    }
+
+    .ro {
+        border-radius: 0px !important;
+        padding: 1px 12px !important;
+    }
+
+    .stick-top {
+        position: sticky !important;
+        top: 0px !important;
+        z-index: 10;
+    }
+    .angular-editor-toolbar-set .fa {
+        color: black;
+    }
+    .ae-font .ae-picker-label {
+        color: black;
+    }
+    .ae-font .ae-picker-options .ae-picker-item {
+        color: #000000;
+    }
+    .angular-editor-toolbar .angular-editor-toolbar-set .angular-editor-button {
+        border-radius: 2px;
+    }
+    .angular-editor-toolbar-set button {
+        border-radius: 2px;
+        padding: 1px 5px;
+    }
+
+    @media (max-width: 425px) {
+        .box {
+            padding: 10px;
+        }
+    }
+
+    // button loader
+    .in-progress span {
+        animation-name: blink;
+        animation-duration: 1.4s;
+        animation-iteration-count: infinite;
+        animation-fill-mode: both;
+        border-radius: 50%;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        margin: 0 3px;
+    }
+
+    .in-progress span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .in-progress span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    @keyframes blink {
+        0% {
+            opacity: 0.2;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0.2;
+        }
+    }
+
+    // button lpader ends
+}

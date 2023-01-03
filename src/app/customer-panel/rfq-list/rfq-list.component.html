@@ -1,0 +1,77 @@
+<ng-container *ngIf="dataStatus == 'fetching'">
+    <div class=" text-center">
+        <img src="/assets/img/loading.gif" style="width: 100px; margin-top:10%;">
+    </div>
+</ng-container>
+<div class="scrollClass box" *ngIf="dataStatus=='done'">
+    <div class="row m-3 no-gutters">
+        <div class="col-md-12 mb-1">
+            <div class="d-flex justify-content-between">
+                <h4>Projects List</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>S#</th>
+                            <th>Project Title</th>
+
+                            <th>Approval Status</th>
+                            <th>Bid Date</th>
+                            <th>Bid Amount</th>
+                            <th>Response Note</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <ng-container *ngIf="dataStatus == 'done'">
+                        <tbody *ngIf="this.list.length > 0">
+
+                            <tr *ngFor="let l of this.list; let i = index">
+                                <td>{{i+1}} </td>
+                                <td>{{l.project.title}} </td>
+
+                                <td>{{l.approval_status}}</td>
+                                <td>{{l.project.bid_date|date}} </td>
+                                <td>{{l.project.bid_amount|currency}}</td>
+                                <td>
+                                    <app-read-more [text]="l.response_note" [maxLength]="50"></app-read-more>
+                                </td>
+                                <td class="d-flex justify-content-start align-content-center">
+                                    <div class="px-2">
+                                        <a [routerLink]="['/customer/rfq/'+l.id+'/project-details']">
+                                            <i style="margin-top: 0px;" class="fa fa-edit"></i>
+                                        </a>
+                                    </div>
+                                    <div class="px-2">
+                                        <i (click)="openModal(deleteTemplate,i)" style="cursor: pointer;margin-top: 0px;color: red;" class="fa fa-trash"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="this.list.length == 0">
+                            <tr>
+                                <td class="noData" colspan="7">
+                                    <h1>No Data in the list</h1>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </ng-container>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #deleteTemplate>
+    <div class="modal-body">
+        <p>Are you sure that you want to delete?</p>
+        <div class="text-right">
+            <button class="xs black" (click)="cancelButton()">No</button>
+            <button class="xs red" (click)="deleteEntry()" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Yes
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</ng-template>

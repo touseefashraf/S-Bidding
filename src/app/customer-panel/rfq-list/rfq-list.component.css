@@ -1,0 +1,20 @@
+.modal-body{
+    font-family: 'Saira', sans-serif;
+}
+.modal-body button{
+    border-radius: 5px;
+}
+.noData{
+    font-family: 'Saira', sans-serif;
+    text-align: center;
+    color: red;
+
+}
+.box{
+    margin: 10px 50px;
+}
+.scrollClass{
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-right: 15px;
+}

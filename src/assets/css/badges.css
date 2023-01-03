@@ -1,0 +1,40 @@
+.i-badge {
+    display: inline-block;
+    border-radius: 0px;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 14px;
+    margin: 2px 4px;
+    cursor: default;
+}
+
+.i-badge.sm {
+    padding: 2px 7px;
+    font-size: 12px;
+}
+
+.i-badge.xs {
+    padding: 1px 3px;
+    font-size: 10px;
+}
+
+.red {
+    background: var(--ap-red);
+}
+
+.black {
+    background: var(--ap-full-black);
+}
+
+.green {
+    background: var(--ap-bright-green);
+}
+
+.i-badge .blue {
+    background: var(--ap-blue);
+}
+
+.yellow {
+    background: var(--ap-yellow);
+}

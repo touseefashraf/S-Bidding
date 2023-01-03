@@ -1,0 +1,44 @@
+<div class="container why-us-main top-div">
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-6">
+      <div [innerHTML]="topContent | safeHtml"></div>
+    </div>
+
+    <div class="col-md-6 align-right">
+      <img class="banner" src="assets/images/aboutus-banner-image.png">
+    </div>
+  </div>
+</div>
+<div class="bg-blue">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 col-xs-4"><img class="progress-icons" src="assets/images/win.png">
+
+        <p class="bg-color-white">Project Leads</p>
+      </div>
+      <div class="col-md-2 col-xs-4"><img class="progress-icons" src="assets/images/home.png">
+
+        <p class="bg-color-white">Plans &amp; Specs</p>
+      </div>
+      <div class="col-md-2 col-xs-4"><img class="progress-icons" src="assets/images/clipboard.png">
+
+        <p class="bg-color-white">Quantities</p>
+      </div>
+      <div class="col-md-2 col-xs-4"><img class="progress-icons" src="assets/images/result.png">
+
+        <p class="bg-color-white">Bid Results</p>
+      </div>
+      <div class="col-md-2 col-xs-4"><img class="progress-icons" src=" assets/images/analysis (1).png">
+
+        <p class="bg-color-white">Rate Analysis</p>
+      </div>
+      <div class="col-md-2 col-xs-4"><img class="progress-icons" src=" assets/images/bar-chart.png">
+
+        <p class="bg-color-white">Primavera P6</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div [innerHTML]="bottomContent | safeHtml"></div>
+</div>

@@ -1,0 +1,14 @@
+@mixin maxLines($property) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $property; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+@for $i from 1 through 5 {
+    $lines: $i;
+    .max-#{$i}-lines { 
+        @include maxLines($i)
+    }
+}

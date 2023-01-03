@@ -1,0 +1,138 @@
+<!-- <button class="btn-primary sm mb-2" (click)="openModal(addEdit,-1)">Add New Invitation</button> -->
+<div class="box">
+    <ng-container *ngIf="dataStatus == 'fetching'">
+        <div class=" text-center">
+            <img src="/assets/img/loading.gif" style="width: 100px; margin-top:15%;">
+        </div>
+    </ng-container>
+
+
+    <div *ngIf="dataStatus=='done'">
+        <div class="col-md-12">
+
+            <div class="col-md-12 tabContent mt-15">
+                <div class="tabContentCover">
+
+                    <div class="col-md-12 mt-15">
+                        <div>
+                            <div class="input-group mb-3">
+                                <!-- <input type="text" class="form-control" placeholder="Search for users" aria-label="Search for users" aria-describedby="basic-addon2"> -->
+                                <ng-autocomplete #autocomplete class="form-control" placeholder="Search User" [data]="userData" [searchKeyword]="keyword" (inputChanged)="onChangeSearch($event)" (selected)="selectEvent($event)" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" [debounceTime]="600" [minQueryLength]="3">
+                                </ng-autocomplete>
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" (click)="saveViaUserId()" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''" type="button">Add
+                                        <span></span><span></span><span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <p class="text-center">&#8212;or&#8212;</p>
+                            </div>
+                            <form [formGroup]="emialForm" #f="ngForm">
+                                <div class="input-group mb-3">
+                                    <input type="text" formControlName="emails" class="form-control" placeholder="Enter email ID to add user" aria-label="Enter email ID to add user" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button type="submit" (click)="saveViaUserEmail(f);" class="btn btn-secondary" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''" type="button">Add
+                                            <span></span><span></span><span></span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="scrollClass">
+                            <div class="recordLine" *ngFor="let l of list; let i = index">
+                                <div class="recordBox1">{{l.email}}</div>
+                                <div class="recordBox2">
+                                    <div *ngIf="l.status!=inactive">
+                                        <button (click)="openModal(deleteTemplate,i)" type="button" class="btn btn-outline-danger">Delete &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <i class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row actionButtonCover " style="margin: 0;">
+    <button [routerLink]="['../qto-documents/qto']" type="button" class="btn-save backbutton" [disabled]="loginLoading" [ngClass]="dataStatus=='fetching'||loginLoading?'in-progress':''"> <i class="fa fa-angle-left"></i> Previous
+        <span></span><span></span><span></span>
+    </button>
+    <!-- <button type="button" class="btn-save skipButton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''"> Skip <i class="fa fa-angle-right"></i>
+            <span></span><span></span><span></span>
+        </button>
+        <button type="submit" class="btn-save" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Next <i class="fa fa-angle-right"></i>
+            <span></span><span></span><span></span>
+        </button> -->
+    <button [routerLink]="['../../../rfq-list']" type="submit" class="btn-save submitBtton" [disabled]="loginLoading" [ngClass]="dataStatus=='fetching'||loginLoading?'in-progress':''">Finish <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button>
+</div>
+
+<ng-container *ngIf="dataStatus == 'done'">
+    <ng-template #noDataFound>
+        <app-no-data-found></app-no-data-found>
+    </ng-template>
+</ng-container>
+
+
+<ng-template #addEdit>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add New Invitation</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="invForm" #f="ngForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <!-- rfq_id, project_id, user_ids[], emails[] -->
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Select Users:<span class="mendatory">*</span></label>
+                            <input formControlName="user_ids" class="form-control" type="text" placeholder="Comma delimited User Id">
+                            <div *ngIf="ui.checkErrors(g.user_ids, f)" class="errors">
+                                <p *ngIf="g.user_ids.errors.required">Please enter User Ids Comma delimited</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Email:<span class="mendatory">*</span></label>
+                            <input formControlName="emails" class="form-control" type="text" placeholder="Comma delimited email">
+                            <div *ngIf="ui.checkErrors(g.emails, f)" class="errors">
+                                <p *ngIf="g.emails.errors.required">Please enter Users Email Comma delimited</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <button type="submit" (click)="save(f);" class="green sm m-1" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Save
+                <span></span><span></span><span></span>
+            </button>
+            <button type="button" class="red sm ml-1" (click)="cancelButton(f)">Cancel</button>
+
+        </form>
+    </div>
+</ng-template>
+<ng-template #deleteTemplate>
+    <div class="modal-body">
+        <p>Are you sure that you want to delete?</p>
+        <div class="text-right">
+            <button class="xs black" (click)="cancelButton()">No</button>
+            <button class="xs red" (click)="deleteEntry()" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Yes
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #itemTemplate let-item>
+    <a [innerHTML]="item.email"></a>
+</ng-template>
+
+<ng-template #notFoundTemplate>
+    <div>
+        <p class="no-loc">No User Matched</p>
+    </div>
+</ng-template>

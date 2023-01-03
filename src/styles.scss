@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css);
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+// @import "assets/css/fonts.css";
+@import "assets/css/variables.scss";
+@import "assets/css/admin-panel.scss";
+@import "assets/css/website.scss";
+@import "assets/css/buttons.scss";
+@import "assets/css/input.scss";
+@import "assets/css/select.scss";
+@import "assets/css/checkbox.scss";
+@import "assets/css/radio-button.scss";
+@import "assets/css/badges.css";
+@import "assets/css/ialerts.scss";
+@import "assets/css/on-off-toggle.scss";
+@import "assets/css/typography.scss";
+@import "assets/fonts/charter/charter.css";
+@import "assets/css/scrollbar.scss";
+body {
+    font-size: 0.9rem;
+}
+.page-wrapper.toggled .sidebar {
+    left: -300px;
+}
+.sidebar .ps.ps--scrolling-y > .ps__rail-y,
+.sidebar > .ps.ps--scrolling-x > .ps__rail-x,
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent !important;
+}
+.sidebar .ps.ps--active-y > .ps__rail-y:hover,
+.sidebar > .ps.ps--active-y > .ps__rail-y.ps--clicking {
+  width: 10px !important;
+}

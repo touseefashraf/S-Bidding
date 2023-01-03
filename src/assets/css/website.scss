@@ -1,0 +1,140 @@
+.website {
+    html {
+        scroll-behavior: smooth;
+    }
+    * {
+        font-family: "Saira", sans-serif;
+    }
+    body {
+        font-family: "Saira", sans-serif !important;
+    }
+    .mendatory {
+        color: red;
+    }
+    .loader-row {
+        width: 100%;
+        text-align: center;
+        min-height: 200px;
+    }
+    .data-loader {
+        width: 70px;
+        margin-top: 20vh;
+    }
+    .in-progress span {
+        animation-name: blink;
+        animation-duration: 1.4s;
+        animation-iteration-count: infinite;
+        animation-fill-mode: both;
+        border-radius: 50%;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        margin: 0 3px;
+    }
+
+    .in-progress span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .in-progress span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    // Next Prev & skip button Style for forms Start
+    .btn-save {
+        background-color: #ca9c09;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        width: 23%;
+        flex-grow: 0;
+    }
+    .skipButton {
+        background-color: #454545;
+    }
+    .submitBtton {
+        background-color: #008767;
+    }
+    .backbutton {
+        background-color: #fff;
+        color: grey;
+    }
+    .actionButtonCover {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        border-top: 1px solid #b5b5b5;
+    }
+
+    .actionButtonCover buttons {
+        text-align: left;
+    }
+    .borderNone {
+        border: none;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .btn-save {
+            flex-grow: 1;
+        }
+    }
+
+    // Next Prev & skip button Style for forms End
+}
+@keyframes blink {
+    0% {
+        opacity: 0.2;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .print-content {
+        visibility: visible;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: calc(100% - 100px);
+    }
+
+    .print-content * {
+        visibility: visible;
+    }
+    .print-content .print-content-logo {
+        display: flex;
+        justify-content: center;
+    }
+}
+.print-content-logo {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+.autocomplete-container .input-container input {
+    box-shadow: none !important;
+    height: 36px !important;
+    padding: 15px 3px;
+    border: 1px solid red;
+}
+.autocomplete-container {
+    box-shadow: none !important;
+    height: 36px !important;
+}
+.ng-autocomplete.form-control {
+    padding: 0;
+}

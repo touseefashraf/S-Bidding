@@ -1,0 +1,105 @@
+<section class="contact-us-page">
+    <div class="form-container">
+        <form [formGroup]="contactUs" (ngSubmit)="save(contactUs)" #f="ngForm" *ngIf="formShow">
+            <div class="contact-us-form">
+                <div class="contact-us-heading">
+                    <h2>Contact Us</h2>
+                </div>
+                <div class="contact-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Full Name" class="input-values" style="margin-left: 0px;"
+                            formControlName="name" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.name, f)" class="errors">
+                                <p *ngIf="g.name.errors.required">Name is required</p>
+                                <p *ngIf="g.name.errors.maxlength">Name limit is
+                                    {{ g.name.errors.maxlength.requiredLength }} Characters</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Email" class="input-values" style="margin-left: 0px;" formControlName="email" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.email, f)" class="errors">
+                                <p *ngIf="g.email.errors.required">Email is required</p>
+                                <p *ngIf="g.email.errors.maxlength">Email limit is
+                                    {{ g.email.errors.maxlength.requiredLength }} Characters</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Contact" class="input-values" style="margin-left: 0px;" formControlName="contact_no" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.contact_no, f)" class="errors">
+                                <p *ngIf="g.contact_no.errors.required">Contact is required</p>
+                                <p *ngIf="g.contact_no.errors.maxlength">Contact limit is
+                                    {{ g.contact_no.errors.maxlength.requiredLength }} Characters</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Subject" class="input-values" style="margin-left: 0px;" formControlName="subject" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.subject, f)" class="errors">
+                                <p *ngIf="g.subject.errors.required">Subject is required</p>
+                                <p *ngIf="g.subject.errors.maxlength">Subject limit is
+                                    {{ g.subject.errors.maxlength.requiredLength }} Characters</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea  placeholder="Message" rows="5" class="input-message" style="margin-left: 0px;" formControlName="message" [ngClass]="{'form-submitted': f.submitted}"></textarea>
+                        <div *ngIf="ui.checkErrors(g.message, f)" class="errors">
+                            <p *ngIf="g.message.errors.required">Message is required</p>
+                            <p *ngIf="g.message.errors.maxlength">Message limit is
+                                {{ g.message.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 captcha-margin">
+                    <re-captcha
+                    (resolved)="resolved($event)"
+                    siteKey="{{siteKey}}"
+                ></re-captcha></div>
+                    </div>
+                    <button type="submit" class="submit-button">SUBMIT</button>
+
+            </div>
+        </form>
+        <div class="success" *ngIf="isSubmitted">
+
+            <h1>Thanks for your Message!</h1>
+            <p>A dedicated team member will be contacting you shortly to discuss your
+                query in detail and to provide whatever assistance you need.</p>
+        </div>
+        <div class="google-map"  *ngIf="formShow">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.6000085557466!2d-74.0094698851697!3d40.7048061793327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25bb5dd45a927%3A0x96e6c6a8cf07713c!2sTrue%20Bid%20Data%20Inc.!5e0!3m2!1sen!2s!4v1601289554344!5m2!1sen!2s" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+
+
+    </div>
+    <h3 class="contact-info-head">Contact Information</h3>
+    <div class="our-contact-info" *ngIf="dataStatus == true">
+        <div class="address cbox">
+            <h5 class="bold">Address:</h5>
+            <div class="address-box">
+            <p >True Bid Data Inc. <br>{{pageContent.address}}</p>
+            <p >True Bid Data Inc. <br> 219 Haverford Ave, Narberth, PA 19072</p>
+            </div>
+            <!-- <p>True Bid Data Inc.</p> -->
+            <!-- <p>99 Wall Street, Syite 556</p>
+            <p>New York, NY, 10005</p> -->
+        </div>
+        <div class="contact cbox">
+            <h5 class="bold">Contact: </h5>
+            <span class="bold"> Phone: </span><a href="tel:+{{replaceAll(pageContent.phone, '-', '')}}"><span class="blue">{{pageContent.phone}}</span></a><br>
+            <span class="bold"> Email: </span><a href="mailto:{{pageContent.contact_email}}"><span class="blue">{{pageContent.contact_email}}</span></a>
+        </div>
+        <div class="more-info cbox">
+            <h5 class="bold">For More Information:</h5>
+            <p style="display: flex;flex-wrap: wrap;"><span class="bold">Support:&nbsp;</span><a href="mailto:{{pageContent.support_email}}"><span class="blue">{{pageContent.support_email}}</span></a></p>
+            <!-- <p><span class="bold">Sales: </span><a href="mailto:{{pageContent.sales_email}}"><span class="blue">{{pageContent.sales_email}}</span></a></p> -->
+        </div>
+    </div>
+</section>

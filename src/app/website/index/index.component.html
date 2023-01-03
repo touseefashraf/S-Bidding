@@ -1,0 +1,112 @@
+<div class="top-container">
+    <div class="container py-5">
+        <div class="top-inner">
+            <div class="top-item top-item-left">
+                <p>A platform to approach <br>hundreds of <b>Subcontractors</b></p>
+                Please click below button to start bidding <br>
+                <ng-container *ngIf="isAuthenticated==false">
+                    <button class="top-item-button" [routerLink]="['/login']" [state]="{ data: 'yes' }">Start Bidding</button>
+                </ng-container>
+                <ng-container *ngIf="isAuthenticated==true">
+                    <button *ngIf="addAuction==false" (click)="gotoTBD()" routerLinkActive="router-link-active" class="top-item-button">Start Bidding</button>
+                    <button *ngIf="addAuction==true" [routerLink]="['/customer/rfq/-1/project-details']" routerLinkActive="router-link-active" class="top-item-button">Start Bidding</button>
+                </ng-container>
+
+            </div>
+            <div class="top-item text-center hide-div"><img src="/assets/images/header_construction_image.png"></div>
+        </div>
+    </div>
+    <div class="crossing hide-div">
+        <img src="/assets/images/crossing.png">
+    </div>
+</div>
+
+<div class="client-container">
+    <div class="container py-5">
+        <div class="client-inner">
+
+            <div class="client-left-right text-center hide-div"><img src="/assets/images/left_graphic.jpg"></div>
+            <div class="client-item">
+                <div class="client-center">
+                    <div class="client-item-inner">
+                        <h1>Register today to add project or bid.</h1>
+                        You can easily create projects for subbidding and invite subcontractors to bid. If you are a subcontractor simply register with us and send your bids for interested projects you can also have the ability to create the project,if you require more information  feel free to reach at sales@subbidding.com
+                    </div>
+                    <div class="client-item-inner text-center">
+                        <img src="/assets/images/scott.jpg">
+                    </div>
+                </div>
+                <div class="client-center mt-5 mb-5 text-center">
+                    <div class="client-item-inner" style="width: 100%;">
+                        <!-- <h1>Our Major Cities</h1> -->
+                    </div>
+                </div>
+                <div class="client-center">
+
+                    <div class="client-item-inner">
+                        <section class="company-image-wrapper" *ngIf="companyImagesData.length > 0">
+                            <div data-aos="fade-left" class="company-images-container" id="images-container">
+                                <div data-aos="fade-left" class="company-image" [id]="'cImage'+i" *ngFor="let d of companyImagesData;let i = index">
+                                    <a target="_blank" [href]="d.link"><img [src]="api.companyImageUrl(d.id)" alt=""></a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+            <div class="client-left-right text-center hide-div"><img src="/assets/images/right_graphic.jpg"></div>
+        </div>
+    </div>
+</div>
+
+<div class="steps-container">
+    <div class="container py-5">
+        <div class="w-100 text-center mt-3 mb-5">
+            <h1>Follow 3 easy steps to list project for subbidding.</h1>
+        </div>
+        <div class="steps-inner">
+            <div class="steps-item">
+                <img src="/assets/images/step_1.png">
+                <br><br>
+                <b>Sign Up</b><br><br>
+                SignUp by filling simple registration form.
+            </div>
+            <div class="steps-item hide-div"><img src="/assets/images/arrow_right_blue.png" style="width: 15%;"></div>
+            <div class="steps-item">
+                <img src="/assets/images/step_2.png">
+                <br><br>
+                <b>Project info & documests.</b><br><br>
+                Fill out project information and upload relevant documents.
+            </div>
+            <div class="steps-item hide-div"><img src="/assets/images/arrow_right_blue.png" style="width: 15%;"></div>
+            <div class="steps-item">
+                <img src="/assets/images/step_3.png">
+                <br><br>
+                <b>Check this status <br></b><br><br>
+                Status of all projects available in registered member profile.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-container">
+    <div class="container">
+        <div class="bottom-inner text-center">
+            <div class="bottom-item">
+                <p>stop consuming time in preparing bids or looking for subcontractors.</p>
+                <h1>Start focusing on Bidding</h1> <br>
+                <ng-container *ngIf="isAuthenticated==false">
+                    <button class="top-item-button" [routerLink]="['/login']" [state]="{ data: 'yes' }">Start Bidding</button>
+                </ng-container>
+
+                <ng-container *ngIf="isAuthenticated==true">
+                    <button *ngIf="addAuction==false" (click)="gotoTBD()" routerLinkActive="router-link-active" class="top-item-button">Start Bidding</button>
+                    <button *ngIf="addAuction==true" [routerLink]="['/customer/rfq/-1/project-details']" routerLinkActive="router-link-active" class="top-item-button">Start Bidding</button>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+
+</div>

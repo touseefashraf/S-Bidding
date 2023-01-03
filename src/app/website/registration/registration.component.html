@@ -1,0 +1,130 @@
+<!-- <p>
+  registration works!
+</p> -->
+<ng-container *ngIf="dataStatus == 'fetching'">
+    <div class=" text-center">
+        <img src="/assets/img/loading.gif" style="width: 100px; margin-top:15%;">
+    </div>
+</ng-container>
+
+<div class="registration-container" *ngIf="dataStatus=='done'">
+    <div class="registration-box">
+        <ng-container *ngIf="!registerStatus">
+            <div class="top-bar">
+                <p class="text-center">Personal Information</p>
+            </div>
+            <div class="inner-body">
+                <form [formGroup]="registrationForm" (ngSubmit)="reg(registrationForm)" #f="ngForm">
+                    <div class="row input-container">
+                        <div class="col-md-6 form-inputs">
+                            <label>First Name</label>
+                            <input type="text" formControlName="first_name" class="email" placeholder="Enter First Name" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.first_name, f)" class="errors">
+                                <p *ngIf="g.first_name.errors.required">First Name is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Last Name</label>
+                            <input type="text" formControlName="last_name" placeholder="Enter Last Name" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.last_name, f)" class="errors">
+                                <p *ngIf="g.last_name.errors.required">Last Name is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Office</label>
+                            <input type="text" formControlName="contact_1" class="email" placeholder="Enter Office #" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.contact_1, f)" class="errors">
+                                <p *ngIf="g.contact_1.errors.required">Office contact is required</p>
+                                <p *ngIf="g.contact_1.errors.minlength">Office contact must be atleast 7 digits</p>
+                                <p *ngIf="g.contact_1.errors.maxlength">Office contact must not exceed 15 digits</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Mobile</label>
+                            <input type="text" formControlName="contact_2" placeholder="Enter Mobile #" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.contact_2, f)" class="errors">
+                                <p *ngIf="g.contact_2.errors.minlength">Enter Mobile # must be atleast 7 digits</p>
+                                <p *ngIf="g.contact_2.errors.maxlength">Enter Mobile # must not exceed 15 digits</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Email</label>
+                            <input type="email" formControlName="email" class="email" placeholder="Enter Email" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.email, f)" class="errors">
+                                <p *ngIf="g.email.errors.required">Email is required</p>
+                                <p *ngIf="g.email.errors.email">Please enter valid email</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" placeholder="Enter Password" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.password, f)" class="errors">
+                                <p *ngIf="g.password.errors.required">Password is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Password Confirmation</label>
+                            <input type="password" formControlName="password_confirmation" placeholder="Confirm Password" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.password_confirmation, f)" class="errors">
+                                <p *ngIf="g.password_confirmation.errors.required">Password Confirmation is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Select Company Name</label>
+                            <select formControlName="plan_holder_id" [(ngModel)]="planeholderId" (change)="checkId()" [ngClass]="{'form-submitted': f.submitted}">
+                                <option style="display: none;" value="">Select Option</option>
+                                <option value="-1">Select Option</option>
+                                <option [value]="d.id" *ngFor="let d of planHolderData">{{d.poc_first_name}}{{d.poc_last_name}}</option>
+                            </select>
+                            <div *ngIf="ui.checkErrors(g.plan_holder_id, f)" class="errors">
+                                <p *ngIf="g.plan_holder_id.errors.required">Plan Holder is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <label>Company Name(if not Listed)</label>
+                            <input *ngIf="!companyNameInput" type="text" disabled formControlName="company_name" [(ngModel)]="companyName" placeholder="Enter Company Name" [ngClass]="{'form-submitted': f.submitted}">
+                            <input *ngIf="companyNameInput" type="text" formControlName="company_name" [(ngModel)]="companyName" placeholder="Enter Company Name" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.company_name, f)" class="errors">
+                                <p *ngIf="g.company_name.errors.required">Company name is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs address">
+                            <label>Address</label>
+                            <input type="text" style="margin: 0px;" formControlName="address" placeholder="Enter Address" [(ngModel)]="address" [ngClass]="{'form-submitted': f.submitted}" #search>
+                            <a class="marker" (click)="getLocation()"><i class="fas fa-map-marker-alt"></i></a>
+                            <div *ngIf="ui.checkErrors(g.address, f)" class="errors">
+                                <p *ngIf="g.address.errors.required">Address is required</p>
+                                <p *ngIf="g.address.errors.minlength">Address must be atleast 4 Characters</p>
+                                <p *ngIf="g.address.errors.maxlength">Address must not exceed 150 Characters</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-inputs">
+                            <re-captcha (resolved)="resolved($event)" siteKey="{{siteKey}}"></re-captcha>
+                        </div>
+                    </div>
+                    <div class="register-btn-container mb-2">
+                        <span><a [routerLink]="['/login']" routerLinkActive="router-link-active">Already registered ? Click here to SignIn </a></span>
+                        <div style="margin-top: 20px;">
+                            <button class="primary register-btn" [disabled]="registerLoading" [ngClass]="registerLoading?'in-progress':''">Register
+                                <span></span><span></span><span></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- <div class="button-container">
+                    <button class="facebook-btn mb-2"><i class="fa fa-facebook fa-fw"></i> Login with Facebook</button>
+                    <button class="google-btn mb-5"><i class="fa fa-google fa-fw"></i> Login with Google</button>
+                </div> -->
+            </div>
+        </ng-container>
+        <ng-container *ngIf="registerStatus">
+            <div class="top-bar">
+                <p class="text-center">Registration Successful</p>
+            </div>
+            <div class="successfully-registered">
+                <h1>You have been successfully registered with us. <br>Please check your email and verify your account</h1>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

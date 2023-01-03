@@ -1,0 +1,223 @@
+header{
+    position: static;
+    width: 100%;
+    z-index: 9999;
+    padding: 0 0 !important;
+    background: #0A4483 !important;
+
+}
+.navbar-brand {
+    color: #fff;
+}
+.home-explore-btn {
+    background-color: #f0542d;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    color: white;
+    width: 100px;
+    height: 34px;
+}
+.blue-button-bg {
+    background-image: url(/assets/images/blue-button-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.blue-button-bg:hover{
+    box-shadow: 0px 0px 5px 1px  #f0542d;
+}
+/*Menu*/
+.navbar-toggler:focus{
+    outline: none;
+}
+.toggler-icon {
+    display: block;
+    background: #fff;
+    width: 30px;
+    height: 2px;
+    margin: 7px 0;
+    transition-duration: 0.3s;
+    transition-property: all;
+}
+.navbar-toggler .toggler-icon:nth-child(2) {
+    width: 20px;
+    margin: 9px 0 9px auto;
+}
+.navbar-toggler {
+    display: none;
+}
+.navbar {
+    padding: 0;
+    z-index: 9;
+    padding: 15px 0;
+}
+.navbar-nav li {
+    padding: 0 10px;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+.navbar-nav li a.button {
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background-color: var(--lr-primary) !important;
+    color: #fff;
+}
+.navbar-nav li a {
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+}
+.navbar-nav li a:hover{
+    text-decoration: none;
+}
+.navbar-nav li.active a:before{
+    content: "";
+    background: #d51c28;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.navbar-nav li.active a{
+    color: #d51c28;
+}
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    min-width: 7rem;
+}
+.dropdown-menu a{
+    display: block;
+    padding: 5px 15px;
+    font-size: 12px !important;
+}
+.dropdown-menu a:hover{
+    color: #d51c28;
+}
+.container-large{
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 30px;
+    position: relative;
+}
+.pointer{
+    cursor: pointer;
+}
+@media screen and (min-width: 1330px){
+    .navbar-expand-xl .navbar-nav{
+        margin-left: 9%!important;
+        width: 100%;
+    }
+    .navbar-expand-xl .nav-main{
+        width: 30.8%;
+    }
+}
+@media screen and (min-width: 1400px){
+    .navbar-expand-xl .navbar-nav{
+        margin-left: 9%!important;
+        width: 100%;
+    }
+    .navbar-expand-xl .navbar-nav li:nth-child(1){
+        width: 33.5%;
+    }
+}
+/* tabs work */
+.active-tab a{
+    background: #216ba4 !important ;
+}
+/* tabs work ends */
+
+@media screen and (max-width: 1199px){
+    .home-explore-btn {
+        margin-top: 5px;
+    }
+    .navbar-nav li {
+        padding: 0 12px;
+    }
+    .navbar-nav li a{
+        font-size: 12px;
+    }
+    .navbar-toggler {
+        display: block;
+    }
+}
+@media screen and (max-width: 991px){
+    .logo {
+        width: 130px;
+    }
+    .navbar-nav li {
+        padding: 0 8px;
+    }
+    .navbar-nav li a {
+        font-size: 12px;
+    }
+
+
+}
+@media screen and (max-width: 767px){
+
+    .container_large{
+        padding: 0 15px;
+    }
+}
+
+
+.top-header {
+    background-color: #2F2F2F;
+    /* min-height: 50px; */
+    color: white;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    border-top: 1px solid #f0f0f0;
+}
+.linksContainer a:last-child {
+    margin-right: 8px;
+}
+.top-header .headerLinks {
+    padding: 7px 10px;
+    display: inline-block;
+}
+.top-header .headerLinks {
+    padding: 10px;
+    display: inline-block;
+}
+.top-header a {
+    color: white;
+    cursor: pointer;
+}
+.top-header .headerLinks:hover {
+    text-decoration: none;
+    background-color: #1C629D;
+    transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    color: #efefef;
+}
+.no-padding {
+    padding: 0px !important;
+}
+.head-btn {
+    display: inline-block;
+    color: #fff;
+    border-radius: 2px;
+    padding: 10px;
+    cursor: pointer;
+}
+.sub-bidding {
+    font-size: 20px;
+    font-weight: 300;
+}
+.sub-bidding span{
+    font-size: 30px;
+}
+.active-tab{
+    background-color: #0A4483;
+}

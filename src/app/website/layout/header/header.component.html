@@ -1,0 +1,86 @@
+<header>
+    <!-- <div class="top-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 text-left no-padding">
+                </div>
+                <div class="col-sm-6 text-right no-padding">
+                    <div class="linksContainer">
+                        <a class="headerLinks" [routerLink]="['/about-us']" routerLinkActive="router-link-active">About Us</a>
+                        <a class="headerLinks" [routerLink]="['/contact-us']">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <nav class="navbar navbar-expand-xl">
+            <a class="navbar-brand sub-bidding" [routerLink]="['/']" routerLinkActive="active"><span>S</span>UB <span>B</span>IDDING</a>
+            <button [ngClass]="!isCollapsed ? 'cross' : ''" class="navbar-toggler collapsed" (click)="setCollapsed()" type="button" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault" [collapse]="isCollapsed" [isAnimated]="true">
+                <ul class="navbar-nav ml-auto" style="justify-content: flex-end;">
+                    <li class="nav-item">
+                        <ng-container *ngIf="isAuthenticated==false">
+                            <a class="nav-link" href="#" (click)="isCollapsed=true" [routerLink]="['/login']" [state]="{ data: 'list' }">Projects List</a>
+                        </ng-container>
+                        <ng-container *ngIf="isAuthenticated==true">
+                            <a class="nav-link" href="#" (click)="isCollapsed=true" [routerLink]="['/customer/rfq-list']">Projects List</a>
+                        </ng-container>
+                    </li>
+                    <li class="nav-item">
+                        <ng-container *ngIf="isAuthenticated==false">
+                        <a class="head-btn" (click)="isCollapsed=true" routerlinkactive="router-link-active" [routerLink]="['/login']" [state]="{ data: 'yes' }">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-plus"></i>
+                                <span class="ml-2">Add Project</span>
+                            </div>
+                        </a>
+                        </ng-container>
+
+                        <ng-container *ngIf="isAuthenticated==true">
+                            <a class="head-btn" (click)="isCollapsed=true; gotoTBD();" *ngIf="addAuction==false" routerlinkactive="router-link-active">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-plus"></i>
+                                    <span class="ml-2">Add Project</span>
+                                </div>
+                            </a>
+
+                            <a class="head-btn" (click)="isCollapsed=true;" *ngIf="addAuction==true" routerlinkactive="router-link-active" [routerLink]="['/customer/rfq/-1/project-details']">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-plus"></i>
+                                    <span class="ml-2">Add Project</span>
+                                </div>
+                            </a>
+
+                        </ng-container>
+                    </li>
+                    <li [ngClass]="{'active-tab': api.activeTab == 'about-us'}"  class="nav-item">
+
+                        <a class="nav-link" [routerLink]="['/about-us']" routerLinkActive="router-link-active">About Us</a>
+
+
+                    </li>
+                    <li [ngClass]="{'active-tab': api.activeTab == 'contact-us'}" class="nav-item">
+
+
+                        <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
+
+                    </li>
+                    <li [ngClass]="{'active-tab': api.activeTab == 'sign-in'}" class="nav-item">
+                        <a class="nav-link" (click)="isCollapsed=true" *ngIf="!isAuthenticated" [routerLink]="['/login']">Sign In</a>
+                        <a class="nav-link" *ngIf="isAuthenticated" href="javascript:void(0)" (click)="logOut()">Logout</a>
+                    </li>
+                    <li [ngClass]="{'active-tab': api.activeTab == 'register'}" class="nav-item">
+                        <a style="color: #F0CF35;" class="nav-link" (click)="isCollapsed=true" *ngIf="!isAuthenticated" [routerLink]="['/registration']">Register</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</header>

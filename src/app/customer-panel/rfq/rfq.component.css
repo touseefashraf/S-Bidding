@@ -1,0 +1,89 @@
+a {
+    outline: 0;
+}
+.formContainer {
+    display: flex;
+}
+.column-1 {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    flex-shrink: 0;
+    flex-basis: 25%;
+    background: rgb(255, 255, 255);
+    background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(251, 251, 251, 1) 85%, rgba(241, 241, 241, 1) 93%, rgba(231, 231, 231, 1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(251, 251, 251, 1) 85%, rgba(241, 241, 241, 1) 93%, rgba(231, 231, 231, 1) 100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(251, 251, 251, 1) 85%, rgba(241, 241, 241, 1) 93%, rgba(231, 231, 231, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#e7e7e7",GradientType=1);
+}
+.column-2 {
+    flex-basis: 75%;
+}
+.box {
+    border: 2px solid rgb(116, 113, 113);
+    box-shadow: 1px 1px 1px #000;
+}
+.titleBar {
+    border-bottom: 1px solid #d3d3d3;
+}
+.qrfMenuLinksUl {
+    margin: 0;
+    padding: 0;
+}
+.qrfMenuLinksUl li {
+    list-style-type: none;
+    margin: 0;
+    border-bottom: 1px solid #b5c8c4;
+    display: flex;
+}
+.qrfMenuLinksUl li a {
+    color: black;
+    height: 70px;
+    flex-grow: 1;
+    padding-left: 15px;
+}
+.qrfMenuLinksUl li.active {
+    background-color: #1b68a0;
+    color: #fff;
+}
+.qrfMenuLinksUl li.active a {
+    color: #fff;
+}
+
+.qrfMenuLinksUl li.completed {
+    background-color: #daede9;
+    color: #fff;
+}
+
+.qrfMenuLinksUl li.completed i {
+    width: 24px;
+    display: block;
+    float: right;
+    height: 70px;
+    padding-left: 5px;
+    padding-top: 26px;
+    background: rgb(0, 137, 104);
+    background: -moz-linear-gradient(0deg, rgba(0, 137, 104, 1) 0%, rgba(0, 107, 81, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0, 137, 104, 1) 0%, rgba(0, 107, 81, 1) 100%);
+    background: linear-gradient(0deg, rgba(0, 137, 104, 1) 0%, rgba(0, 107, 81, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#008968",endColorstr="#006b51",GradientType=1);
+}
+.qrfMenuLinksUl li i {
+    display: none;
+}
+.qrfMenuLinksUl li a:hover {
+    text-decoration: none;
+    background-color: #daede9;
+    color: #000;
+}
+@media only screen and (max-width: 768px) {
+    .column-1,
+    .column-2 {
+        flex-basis: 100%;
+    }
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+

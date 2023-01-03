@@ -1,0 +1,158 @@
+<!-- <p>
+    project-details works!
+</p> -->
+<!-- <h1>RFQ ID {{dataService.rfqId}}</h1> -->
+<ng-container *ngIf="dataStatus == 'fetching'">
+    <input #searchProjectLoc class="hidden" />
+    <div class=" text-center">
+        <img src="/assets/img/loading.gif" style="width: 100px; margin-top:25%;">
+    </div>
+</ng-container>
+<div *ngIf="dataStatus=='done'">
+    <form [formGroup]="projectDetailsForm" (ngSubmit)="save(projectDetailsForm, f)" #f="ngForm">
+        <div class="container-fluid scrollClass">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="mb-2">Title <span class="mendatory">*</span></label>
+                    <input [readonly]="projectUserId!=loggedinUserId" formControlName="title" class="form-control mt-0" type="text" placeholder="Enter Title" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.title, f)" class="errors">
+                        <p *ngIf="g.title.errors.required">Title is required</p>
+                        <p *ngIf="g.title.errors.maxlength">Title should be maximum {{ g.title.errors.maxlength.requiredLength }} charaters</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="mb-2">Solicitation <span class="mendatory">*</span></label>
+                    <input [readonly]="projectUserId!=loggedinUserId" formControlName="solicitation" class="form-control mt-0" type="text" placeholder="Enter Solicitation" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.solicitation, f)" class="errors">
+                        <p *ngIf="g.solicitation.errors.required">Solicitation is required</p>
+                        <p *ngIf="g.solicitation.errors.maxlength">Solicitation should be maximum {{ g.solicitation.errors.maxlength.requiredLength }} charaters</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="mb-2">Bid Amount <span class="mendatory">*</span></label>
+                    <input [readonly]="projectUserId!=loggedinUserId" formControlName="bid_amount" class="form-control mt-0" type="number" min="0" placeholder="Enter Bid Amount" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.bid_amount, f)" class="errors">
+                        <p *ngIf="g.bid_amount.errors.required">Bid Amount is required</p>
+                    </div>
+                </div>
+
+                <!-- <div class="col-md-4 mb-3">
+                    <label class="mb-2">Project latitude <span class="mendatory">*</span></label>
+                    <input [readonly]="projectUserId!=loggedinUserId" formControlName="project_lat" class="form-control mt-0" type="number" min="0" placeholder="Enter Bid Amount" [ngClass]="{'form-submitted': f.submitted}">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="mb-2">Project longitude <span class="mendatory">*</span></label>
+                    <input [readonly]="projectUserId!=loggedinUserId" formControlName="project_lng" class="form-control mt-0" type="number" min="0" placeholder="Enter Bid Amount" [ngClass]="{'form-submitted': f.submitted}">
+                </div> -->
+
+                <div class="col-md-4 mb-3">
+                    <label class="mb-2">Bid Method <span class="mendatory">*</span></label>
+                    <input [readonly]="projectUserId!=loggedinUserId" formControlName="bid_method" class="form-control mt-0" type="text" placeholder="Enter Bid Method" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.bid_method, f)" class="errors">
+                        <p *ngIf="g.bid_method.errors.required">Bid Method is required</p>
+                        <p *ngIf="g.bid_method.errors.maxlength">Bid Method should be maximum {{ g.bid_method.errors.maxlength.requiredLength }} charaters</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="mb-2">Bid Date <span class="mendatory">*</span></label>
+                    <input [isDisabled]="projectUserId!=loggedinUserId" formControlName="bid_date" class="form-control mt-0" type="text" bsDatepicker [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY',adaptivePosition: true }" placeholder="Enter Bid Date" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.bid_date, f)" class="errors">
+                        <p *ngIf="g.bid_date.errors.required">Bid Date is required</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="mb-2">Completion Time <span class="mendatory">*</span></label>
+                    <input [readonly]="projectUserId!=loggedinUserId" formControlName="completion_time" class="form-control mt-0" type="text" placeholder="Enter Completion Time" [ngClass]="{'form-submitted': f.submitted}">
+                    <div *ngIf="ui.checkErrors(g.completion_time, f)" class="errors">
+                        <p *ngIf="g.completion_time.errors.required">Completion Time is required</p>
+                        <p *ngIf="g.completion_time.errors.maxlength">Completion Time should be maximum {{ g.bid_method.errors.maxlength.requiredLength }} charaters</p>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="mb-2">Project Location <span class="mendatory">*</span></label>
+                    <div class="loc-marker input-group">
+                        <input [readonly]="projectUserId!=loggedinUserId" type="text" formControlName="project_location" class="form-control" placeholder="Enter Project Location" [ngClass]="{'form-submitted': f.submitted}" #searchProjectLoc>
+                        <div class="input-group-append">
+                            <span class="marker input-group-text" (click)="getProjectLocation()"><i class="fas fa-map-marker-alt"></i></span>
+                        </div>
+                    </div>
+
+                    <div *ngIf="ui.checkErrors(g.project_location, f)" class="errors">
+                        <p *ngIf="g.project_location.errors.required">Project Location is required</p>
+                        <p *ngIf="g.project_location.errors.maxlength">Project Location should be maximum {{ g.project_location.errors.maxlength.requiredLength }} charaters</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label class="mb-2">Notes <span class="mendatory">*</span></label>
+                    <textarea [readonly]="projectUserId!=loggedinUserId" rows="4" formControlName="notes" autocomplete="off" class="form-control mt-0" placeholder="Enter Notes" [ngClass]="{'form-submitted': f.submitted}"></textarea>
+                    <div *ngIf="ui.checkErrors(g.notes, f)" class="errors">
+                        <p *ngIf="g.notes.errors.maxlength">Completion Time should be maximum {{ g.notes.errors.maxlength.requiredLength }} charaters</p>
+                    </div>
+                </div>
+
+
+                <!-- <div class="col-md-12 mb-3">
+                    <label class="mb-2">Description <span class="mendatory">*</span></label>
+                    <textarea rows="5" formControlName="description" autocomplete="off" class="form-control mt-0" placeholder="Enter Description" [ngClass]="{'form-submitted': f.submitted}"></textarea>
+                </div> -->
+
+                <div class="col-md-12 mb-3">
+                    <label class="mb-2">Multiple Divisions</label>
+                    <div class="row">
+                        <div class="col-md-3" *ngFor="let sd of selectedDivisions; let i = index">
+                            <div class="btn-text">{{sd.name}} <span *ngIf="projectUserId==loggedinUserId" class="cancel-icon" (click)="unSelectDivision(sd)"><i class="fa fa-remove"></i></span></div>
+                        </div>
+                        <!-- <div class="col-md-3">
+                            <div class="btn-text">Sample Division <span class="cancel-icon"><i class="fa fa-remove"></i></span></div>
+                        </div> -->
+                        <div class="col-md-3">
+                            <div *ngIf="projectUserId==loggedinUserId" class="add-btn" (click)="openModalSubject(csiDivisions, -1)"><span><i class="fa fa-remove rotate-45"></i></span> Add Division</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actionButtonCover mt-3">
+            <!-- <button  type="button" class="btn-save backbutton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''"> <i class="fa fa-angle-left"></i> Previous
+                <span></span><span></span><span></span>
+            </button> -->
+            <!-- <button type="button" class="btn-save skipButton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''"> Skip <i class="fa fa-angle-right"></i>
+                <span></span><span></span><span></span>
+            </button> -->
+            <!-- <button type="submit" class="btn-save" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Next <i class="fa fa-angle-right"></i>
+                <span></span><span></span><span></span>
+            </button> -->
+            <button type="submit" class="btn-save submitBtton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Save & Next <i class="fa fa-angle-right"></i>
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<ng-template #csiDivisions>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">CSI Divisions List</h4>
+        <div class="btn-cancel" (click)="cancelButton()"><i class="fa fa-remove"></i></div>
+    </div>
+    <div class="modal-body">
+        <div class="divisions-container">
+            <div class="divisions-list-box">
+                <div class="row">
+                    <div class="col-md-6" *ngFor="let cdl of csiDivisionList; let i = index">
+                        <div class="divisions-items" (click)="selectDivision(cdl)">
+                            {{cdl.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn-done" (click)="cancelButton()">Done</button>
+    </div>
+</ng-template>

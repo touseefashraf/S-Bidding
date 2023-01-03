@@ -1,0 +1,172 @@
+<div class="box">
+    <ng-container *ngIf="dataStatus == 'fetching'">
+        <div class=" text-center">
+            <img src="/assets/img/loading.gif" style="width: 100px; margin-top:15%;">
+        </div>
+    </ng-container>
+    <div *ngIf="dataStatus=='done'">
+        <div class="main-container">
+            <div class="col-md-12 packagesCover">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <button type="button" class="btn-success addNewPackage" (click)="openModalSubjectForm(addnewPackage, -1)"> <span> <i class="fa fa-remove rotate-45"></i> </span> Add Bid Packages </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 scrollClass">
+                <div class="card mb-3" *ngFor="let pl of packagesList; let i = index">
+                    <div class="card-header projectTitle">
+                        <span>Title: {{pl.title}} </span>
+                        <span>
+                            <span> <button (click)="openModal(deleteTemplatePack,i)" class="btn fa-pull-right">Delete<i  style="cursor: pointer;margin-top: 0px;color: red;" class="fa fa-trash"></i></button></span>
+                            <span><button (click)="openModalSubjectForm(addnewPackage,i)" class="btn fa-pull-right">Edit <i class="fas fa-edit "></i></button> </span>
+
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>{{pl.description}}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="buttonRow">
+                                    <ng-container *ngFor="let cdls of pl.rfq_package_divs">
+                                        <button type="button" class="mt-2"> {{(cdls.csi_division)?cdls.csi_division.name:''}}
+                                            <span class="cancel-icon">
+                                                <i (click)="this.selectedIndex=i;openModalDell(deleteTemplate,cdls.id)" class="fa fa-remove"></i>
+                                            </span>
+                                        </button>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row actionButtonCover " style="margin:0">
+    <button [routerLink]="['../project-details']" type="button" class="btn-save backbutton" [disabled]="dataStatus=='fetching'" [ngClass]="dataStatus=='fetching'?'in-progress':''"> <i class="fa fa-angle-left"></i> Previous
+        <span></span><span></span><span></span>
+    </button>
+    <!-- <button type="button" class="btn-save skipButton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''"> Skip <i class="fa fa-angle-right"></i>
+            <span></span><span></span><span></span>
+        </button> -->
+    <button [routerLink]="['../documents/plan']" type="submit" class="btn-save" [disabled]="dataStatus=='fetching'" [ngClass]="dataStatus=='fetching'?'in-progress':''">Next <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button>
+    <!-- <button type="submit" class="btn-save submitBtton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Save <i class="fa fa-angle-right"></i>
+            <span></span><span></span><span></span>
+        </button> -->
+</div>
+
+
+<ng-template #csiDivisions>
+    <div class="modal-header csiHeader">
+        <h5 class="modal-title pull-left">CSI Divisions List</h5>
+        <div class="btn-cancel" (click)="cancelButtonList()"><i class="fa fa-remove"></i></div>
+    </div>
+    <div class="modal-body">
+        <ul class="csiDivisionList">
+            <li *ngFor="let cdl of csiDivisionList">
+                <input (change)="addRemoveObj(cdl.id,cdl)" class="check-box" [checked]="isChecked(cdl.id)" type="checkbox" name="csi_division_ids" [id]="cdl.id">
+                <label [for]="cdl.id">{{cdl.name}}</label>
+            </li>
+        </ul>
+        <button type="button" class="btn-done" (click)="cancelButtonList()">Done</button>
+    </div>
+</ng-template>
+
+<ng-template #addnewPackage>
+    <div class="modal-header">
+        <h5 class="modal-title pull-left">Add Bid Package</h5>
+        <div class="btn-cancel" (click)="cancelButton(f)"><i class="fa fa-remove"></i></div>
+    </div>
+    <div class="modal-body">
+        <div class="col-md-12 mt-3">
+            <form [formGroup]="packagesForm" (ngSubmit)="save(packagesForm, f)" #f="ngForm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 mb-3">
+                            <label class="mb-2">Title <span class="mendatory">*</span></label>
+                            <input formControlName="title" class="form-control mt-0" type="text" placeholder="Enter Title" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.title, f)" class="errors">
+                                <p *ngIf="g.title.errors.required">Title is required</p>
+                                <p *ngIf="g.title.errors.maxlength">Title should be maximum {{ g.title.errors.maxlength.requiredLength }} charaters</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label class="mb-2">Description <span class="mendatory">*</span></label>
+                            <textarea rows="4" formControlName="description" autocomplete="off" class="form-control mt-0" placeholder="Enter Notes" [ngClass]="{'form-submitted': f.submitted}"></textarea>
+                            <div *ngIf="ui.checkErrors(g.description, f)" class="errors">
+                                <p *ngIf="g.description.errors.maxlength">Completion Time should be maximum {{ g.description.errors.maxlength.requiredLength }} charaters</p>
+                            </div>
+                        </div>
+                        <!-- <ng-container *ngIf="fileName">
+                            <div class="col-md-12">
+                                {{fileName}}
+                            </div>
+                        </ng-container>
+                        <div class="col-md-12 buttonRow">
+                            <input type="file" style="display: none;" id="other-files" (change)="onDocumentChange($event)" multiple>
+                            <button type="button" class="addBtn" (click)="browseFiles($event)"> <span> <i class="fas fa-file-upload m-1"></i> </span> Upload QTO </button>
+                        </div> -->
+
+                        <div class="col-md-12 mb-3 divisionCover ">
+                            <label class="mb-2">Multiple Divisions:</label>
+                            <div class="buttonRow">
+                                <ng-container *ngFor="let cdl of checkDList">
+                                    <button type="button" class="checkedNew buttonRowList mb-2"> {{cdl.name}}
+                                        <!-- <span class="cancel-icon">
+                                            <i class="fa fa-remove"></i>
+                                        </span> -->
+                                    </button>
+                                </ng-container>
+                                <div class="col-md-12 row">
+                                    <button type="button" class="addBtn" (click)="openModalSubject(csiDivisions, -1)"> Add/Remove Division </button>
+                                </div>
+                                <br>
+                                <br>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 buttonRow justify-content-center">
+                        <button type="submit" class="btn-success m-2" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''"> <i class="fas fa-save"></i> Save
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<ng-template #deleteTemplate>
+    <div class="modal-body delconfrm">
+        <div class="col-md-12">
+            <p>Are you sure that you want to delete?</p>
+            <div class="text-right">
+                <button class="xs black" (click)="cancelButtonList()">No</button>
+                <button class="xs red" (click)="deleteEntry()" [disabled]="loginLoading">Yes
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #deleteTemplatePack>
+    <div class="modal-body">
+        <p>Are you sure that you want to delete?</p>
+        <div class="text-right">
+            <button class="xs black" (click)="cancelButton()">No</button>
+            <button class="xs red" (click)="deletePack()" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Yes
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</ng-template>

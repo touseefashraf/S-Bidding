@@ -1,0 +1,56 @@
+<section style="background-color:#f2f2f2;">
+    <div class="container titleBar pb-1 pt-2" style="background-color: white;">
+        <h3>RFQ Form</h3>
+        <!-- {{dataService.rfqId}} -->
+    </div>
+    <div class="container" style="background-color: white;">
+        <div class="row formContainer">
+            <div class="column-1">
+                <ul class="qrfMenuLinksUl">
+                    <li [class.active]="dataService.activeMenu === 'project-details'">
+                        <a class="d-flex align-items-center" [routerLink]="['project-details']" routerLinkActive="router-link-active"><b>SETP 1:</b> Add Project Info</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                    <li [class.active]="dataService.activeMenu === 'packages'">
+                        <a class="d-flex align-items-center" [class.disabled]="dataService.rfq === null" [routerLink]="['packages']" routerLinkActive="router-link-active"><b>STEP 2:</b> Create Bid Packages</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                    <li [class.active]="dataService.activeMenu === 'plan'">
+                        <a class="d-flex align-items-center" [class.disabled]="dataService.rfq === null" [routerLink]="['documents', 'plan']" routerLinkActive="router-link-active"><b>STEP 3:</b> Upload Plans</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                    <li [class.active]="dataService.activeMenu === 'spec'">
+                        <a class="d-flex align-items-center" [class.disabled]="dataService.rfq === null" [routerLink]="['documents', 'spec']" routerLinkActive="router-link-active"><b>STEP 4:</b> Upload Specs</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                    <li [class.active]="dataService.activeMenu === 'addendum'">
+                        <a class="d-flex align-items-center" [class.disabled]="dataService.rfq === null" [routerLink]="['documents', 'addendum']" routerLinkActive="router-link-active"><b>STEP 5:</b> Upload Addenda</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                    <li [class.active]="dataService.activeMenu === 'other'">
+                        <a class="d-flex align-items-center" [class.disabled]="dataService.rfq === null" [routerLink]="['documents', 'other']" routerLinkActive="router-link-active"><b>STEP 6:</b> Upload Other Documents</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                    <li [class.active]="dataService.activeMenu === 'sub-bidding'">
+                        <a class="d-flex align-items-center" [routerLink]="['subbidding-documents']" routerLinkActive="router-link-active"><b>STEP 7:</b> Upload Sub-Bidding Docs</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                    <ng-container >
+                        <li [class.active]="dataService.activeMenu === 'qto'">
+                            <a class="d-flex align-items-center" [class.disabled]="dataService.rfq === null" [routerLink]="['qto-documents', 'qto']" routerLinkActive="router-link-active"><b>STEP 8:</b> Upload QTOs</a>
+                            <i class="fas fa-check"></i>
+                        </li>
+                    </ng-container>
+                    <li [class.active]="dataService.activeMenu === 'invitations'">
+                        <a class="d-flex align-items-center" [class.disabled]="dataService.rfq === null" [routerLink]="['invitations']" routerLinkActive="router-link-active"><b>STEP 9:</b> Invite Subbidders</a>
+                        <i class="fas fa-check"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="column-2">
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+    </div>
+</section>

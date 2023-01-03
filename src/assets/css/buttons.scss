@@ -1,0 +1,119 @@
+.admin-panel{
+    button:focus, button:active {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    button {
+        outline: none !important;
+        border: none;
+        color: #fff;
+        font-size: 15px;
+        text-transform: uppercase;
+        padding: 8px 30px;
+        border-radius: 25px;
+        margin: 3px;
+    }
+
+    button.sm {
+        padding: 4px 16px;
+        border-radius: 16px;
+        text-transform: initial;
+        font-size: 14px;
+        padding-top: 8px;
+    }
+
+    button.xs {
+        padding: 2px 10px;
+        border-radius: 16px;
+        text-transform: initial;
+        font-size: 10px;
+    }
+
+    button.red {
+        background: var(--ap-red);
+    }
+
+    button.black {
+        background: var(--ap-black);
+    }
+
+    button.green {
+        background: var(--ap-green);
+    }
+
+    button.blue{
+        background: var(--ap-blue);
+    }
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .btn-group .main {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        margin: 0px;
+    }
+    .btn-group .dropdown-toggle {
+        width: 20px;
+        margin: 0px;
+        padding-left: 10px;
+        // filter: brightness(0.75);
+    }
+    .btn-group .dropdown-toggle::after {
+        display: none;
+    }
+    .btn-group ul.dropdown-menu {
+        margin-top: 0px;
+        border: 1px solid #eeee;
+        border-radius: 10px;
+        padding: 5px 0px;
+    }
+    .btn-group ul.dropdown-menu li:hover {
+        background-color: #eaeaea;
+    }
+    .btn-group ul.dropdown-menu li {
+        color: #fff;
+        padding: 0px 20px;
+    }
+    .btn-group ul.dropdown-menu li a {
+        text-decoration: none;
+    }
+}
+
+.website {
+    // button{
+    //     border: none;
+    //     border-radius: 5px;
+    //     display: inline-block;
+    //     padding: 12px 20px;
+    //     color: #fff;
+    // }
+    button:focus, button:active {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    .primary{
+        background: url(/assets/images/blue-button-bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .secondary{
+        background: url(/assets/images/golden-button-bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .orange{
+        background: url(/assets/images/orange-button-bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .info{
+        background: #17a2b8;
+    }
+    .warning{
+        background: #ffc107;
+    }
+    .danger{
+        background: #dc3545;
+    }
+}

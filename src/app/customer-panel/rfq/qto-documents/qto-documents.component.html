@@ -1,0 +1,151 @@
+<!-- <p>
+  qto-documents works!
+</p>
+<h1>RFQ ID {{dataService.rfqId}}</h1> -->
+<div class="main-container">
+    <ng-container *ngIf="dataStatus == 'fetching'">
+        <div class=" text-center">
+            <img src="/assets/img/loading.gif" style="width: 100px; margin-top:15%;">
+        </div>
+    </ng-container>
+    <div class="container" *ngIf="dataStatus == 'done'">
+
+        <ng-container *ngIf="docData.length>0">
+            <div class="scrollClass">
+                <ng-container class="" *ngFor="let d of docData;let i = index">
+
+                    <div class="pageContainer" *ngIf="d.document_type == docType">
+                        <div class="doc-details">
+                            <div class="docs-image">
+                                <img src="assets/images/file-img.jpg">
+                            </div>
+                            <div class="file-info">
+                                <div class="file-info-item">{{d.full_name}}</div>
+                                <div class="file-info-item">
+                                    <span>{{d.file_size}}kb</span>
+                                </div>
+                                <div class="file-info-item">
+                                    <div class="division-box">
+                                        <p>CSI Divisions:</p>
+                                        <div class="row">
+                                            <div class="col-md-4" *ngFor="let sd of d.project_csi_divisions">
+                                                <div class="btn-text">{{sd.csi_division.name}} </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="actions">
+
+                            <!-- <div class="dload" (click)="downloadDocument(d.id, d)">
+                                <p>Download</p>
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="del" (click)="deleteFile(i)">
+                                <p>Delete</p>
+                                <i class="fas fa-trash"></i>
+                            </div> -->
+                            <ng-container *ngIf="projectUserId==loggedinUserId">
+                                <button (click)="downloadDocument(d.id, d)" type="button" class="btn btn-outline-secondary">Download &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <i class="fas fa-download"></i></button>
+
+                                <button (click)="deleteFile(i)" type="button" class="btn btn-outline-danger">Delete &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <i class="fas fa-trash"></i></button>
+                            </ng-container>
+                        </div>
+                    </div>
+
+
+                </ng-container>
+                <ng-container *ngIf="fileStatus == 'uploading'">
+                    <div>
+                        <div class=" text-center">
+                            <img src="/assets/img/loading.gif" style="width: 60px; margin-top:1%;">
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="drag-bar">
+                <ng-container *ngIf="projectUserId==loggedinUserId">
+                    <button type="button" style="width: 220px" (click)="openModal(addDocs)">Click here to select Files</button>
+                </ng-container>
+            </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="docData.length==0">
+            <ng-container *ngIf="fileStatus == 'uploading'">
+                <div>
+                    <div class=" text-center">
+                        <img src="/assets/img/loading.gif" style="width: 100px; margin-top:15%;">
+                    </div>
+                </div>
+            </ng-container>
+
+            <div *ngIf="fileStatus=='uploaded'" class="file-box">
+                <i style="font-size: 60px;" class="far fa-images"></i>
+                <ng-container *ngIf="projectUserId==loggedinUserId">
+                    <button class="upload-btn" type="button" (click)="openModal(addDocs)">Click here to select Files</button>
+                </ng-container>
+            </div>
+
+        </ng-container>
+
+
+    </div>
+</div>
+<div class="actionButtonCover borderNone">
+    <button [routerLink]="['../../subbidding-documents']" type="button" class="btn-save backbutton" [disabled]="dataStatus=='fetching'" [ngClass]="dataStatus=='fetching'?'in-progress':''"> <i class="fa fa-angle-left"></i> Previous
+        <span></span><span></span><span></span>
+    </button>
+    <!-- <button type="button" class="btn-save skipButton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''"> Skip <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button> -->
+    <button [routerLink]="['../../invitations']" type="submit" class="btn-save" [disabled]="dataStatus=='fetching'" [ngClass]="dataStatus=='fetching'?'in-progress':''">Next <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button>
+    <!-- <button type="submit" class="btn-save submitBtton" [disabled]="loginLoading" [ngClass]="loginLoading?'in-progress':''">Save <i class="fa fa-angle-right"></i>
+        <span></span><span></span><span></span>
+    </button> -->
+</div>
+<ng-template #addDocs>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Upload QTO Documents</h4>
+        </div>
+        <div class="modal-body" style="min-height: 250px; overflow-y: auto;">
+
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <label>CSI Divisions</label>
+                    <div class="csi-division row">
+                        <div class="col-md-4 item" *ngFor="let d of csiList; let i = index">
+                            <button [ngClass]="(checkcsiId(d.csi_division.id))?'sm m-1 active-button':'sm m-1 inactive-button'" (click)="spliceAddCsiId(d.csi_division.id,i)" type="button">{{d.csi_division.name}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="tut-pro-photo">
+                        <input type="file" style="display: none;" id="other-files" (change)="onDocumentChange($event)" multiple>
+                        <button class="save-btn" (click)="browseFiles($event)">Upload Documents</button>
+                    </div>
+                </div>
+                <ng-container *ngIf="fileName">
+                    <div class="col-md-12">
+                        <img src="/assets/images/excel-logo.png" style="width: 50px;" alt="">
+                       File: {{fileName}}
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="save()" class="save-btn">Save</button>
+            <button type="button" class="cancel-btn" (click)="cancelButton()">Cancel</button>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,21 @@
+<!-- <p>
+    project-to-rfq works!
+</p>
+<div *ngIf="dataStatus=='done'">
+    <h4>{{projectId}}</h4>
+    <h4>{{userToken}}</h4>
+
+</div> -->
+<ng-container *ngIf="dataStatus == 'fetching'">
+    <div class="msg">
+        <h2>
+            Please wait <br>
+            Fetching Project data....
+
+        </h2>
+    </div>
+    <div class=" text-center">
+        <img src="/assets/img/loading.gif" style="width: 100px; margin-top:1%;">
+    </div>
+
+</ng-container>
